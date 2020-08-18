@@ -38,7 +38,6 @@ public class ListTaskFragment extends Fragment {
 
     //endregion
 
-
     public static ListTaskFragment newInstance(int intState) {
         State state = State.values()[intState];
         Bundle args = new Bundle();
@@ -47,45 +46,44 @@ public class ListTaskFragment extends Fragment {
         fragment.setArguments(args);
         return fragment;
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mTaskRepository=TaskRepository.getInstance();
+        mTaskRepository = TaskRepository.getInstance();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view= inflater.inflate(R.layout.fragment_list_task, container, false);
+        View view = inflater.inflate(R.layout.fragment_list_task, container, false);
         findViews(view);
         setInitialization();
         setOnClickListners();
         return view;
     }
 
-
-
     private void findViews(View view) {
-        mFloatingActionButtonAddTask=view.findViewById(R.id.floatingActionButton_fragmentListTask_addTask);
-        mRecyclerView=view.findViewById(R.id.recyclerview_fragmentListTask);
+        mFloatingActionButtonAddTask = view.findViewById(R.id.floatingActionButton_fragmentListTask_addTask);
+        mRecyclerView = view.findViewById(R.id.recyclerview_fragmentListTask);
     }
 
     private void setOnClickListners() {
-    mFloatingActionButtonAddTask.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            mTaskRepository.add(new Task("programing","excesise 13",State.Done,new Date(),new Time(24),null));
-            String s="l";
-        }
-    });
+        mFloatingActionButtonAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTaskRepository.add(new Task("programing", "excesise 13", State.Done, new Date(), new Time(24), null));
+                String s = "l";
+            }
+        });
 
     }
 
     private void setInitialization() {
-        State state=(State) getArguments().getSerializable(ARG_STATE);;
-        mMyAdapter=new MyAdapter(mTaskRepository.getList(state));
+        State state = (State) getArguments().getSerializable(ARG_STATE);
+        mMyAdapter = new MyAdapter(mTaskRepository.getList());
         mRecyclerView.setAdapter(mMyAdapter);
+        mRecyclerView.showContextMenu();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -108,19 +106,25 @@ public class ListTaskFragment extends Fragment {
         }
 
         public void setItem(Task task) {
-            mEditTextTitle.setText(task.getTitle());
-            mEditTextDescribe.setText(task.getDescribe());
-            mEditTextTime.setText(task.getTime().toString());
-            mEditTextState.setText(task.getState().toString());
-            mEditTextDate.setText(task.getDate().toString());
+//            mEditTextTitle.setText(task.getTitle());
+//            mEditTextDescribe.setText(task.getDescribe());
+//            mEditTextTime.setText(task.getTime().toString());
+//            mEditTextState.setText(task.getState().toString());
+//            mEditTextDate.setText(task.getDate().toString());
+
+            mEditTextTitle.setText("task.getTitle()");
+            mEditTextDescribe.setText("task.getDescribe()");
+            mEditTextTime.setText("task.getTime().toString()");
+            mEditTextState.setText("task.getState().toString()");
+            mEditTextDate.setText("task.getDate().toString()");
         }
     }
 
-    public class MyAdapter extends RecyclerView.Adapter<MyViewHolder>{
-        List<Task> mTaskList=new ArrayList<>();
+    public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+        List<Task> mTaskList;
 
         public MyAdapter(List<Task> list) {
-            mTaskList=list;
+            mTaskList = list;
         }
 
         @NonNull
