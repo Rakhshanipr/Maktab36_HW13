@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    tools:context=".controller.fragment.DatePickerFragment">
+
+    <DatePicker
+        android:id="@+id/timePicker_fragmentTimePicker_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </DatePicker>
+
+    <Button
+        android:id="@+id/button_fragmentTimePicker_Cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="#66BD6A"
+        android:backgroundTint="#33A9EF"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/timePicker_fragmentTimePicker_time"
+        app:layout_constraintTop_toBottomOf="@+id/timePicker_fragmentTimePicker_time"
+        app:layout_constraintVertical_bias="0.474" />
+
+    <Button
+        android:id="@+id/button_fragmentTimePicker_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#66BD6A"
+        android:backgroundTint="#33A9EF"
+        android:text="Save"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="@+id/button_fragmentTimePicker_Cancel"
+        app:layout_constraintEnd_toEndOf="@+id/timePicker_fragmentTimePicker_time"
+        app:layout_constraintTop_toTopOf="@+id/button_fragmentTimePicker_Cancel"
+        app:layout_constraintVertical_bias="0.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>
