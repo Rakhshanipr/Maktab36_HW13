@@ -34,6 +34,7 @@ public class ListTaskFragment extends Fragment {
 
     //region defind static method and variable
     public static final String ARG_STATE = "com.example.hw13.controller.fragment.ListTaskFragment.state";
+    public static final String TAG_ADD_TASK_FRAGMENT_DIALOG = "com.example.hw13.controller.fragment.ListTaskFragment.addTaskFragmentDialog";
 
 
     //endregion
@@ -72,8 +73,10 @@ public class ListTaskFragment extends Fragment {
         mFloatingActionButtonAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mTaskRepository.add(new Task("programing", "excesise 13", State.Done, new Date(), new Time(24), null));
-                String s = "l";
+//                mTaskRepository.add(new Task("programing", "excesise 13", State.Done, new Date(), new Time(24), null));
+//                String s = "l";
+                AddTaskFragment fragment =new AddTaskFragment();
+                fragment.show(getFragmentManager(), TAG_ADD_TASK_FRAGMENT_DIALOG);
             }
         });
 
