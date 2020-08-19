@@ -18,7 +18,7 @@
     </TimePicker>
 
     <Button
-        android:id="@+id/button_fragmentTimePicker_Cancel"
+        android:id="@+id/button_fragmentTimePicker_cancel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -43,8 +43,8 @@
         android:backgroundTint="#33A9EF"
         android:text="Save"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/button_fragmentTimePicker_Cancel"
+        app:layout_constraintBottom_toBottomOf="@+id/button_fragmentTimePicker_cancel"
         app:layout_constraintEnd_toEndOf="@+id/timePicker_fragmentTimePicker_time"
-        app:layout_constraintTop_toTopOf="@+id/button_fragmentTimePicker_Cancel"
+        app:layout_constraintTop_toTopOf="@+id/button_fragmentTimePicker_cancel"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

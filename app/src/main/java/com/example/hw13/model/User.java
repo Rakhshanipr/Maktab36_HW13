@@ -7,6 +7,8 @@ public class User {
     private String mUserName;
     private String mPassword;
 
+    public static User sOnlineUser;
+
     public User(String userName, String password) {
         mUserId=UUID.randomUUID();
         mUserName = userName;

@@ -72,6 +72,7 @@ public class UserRepository implements IRepository<User> {
     public boolean isValid(String username,String password){
         for (int i=0;i<mListUsers.size();i++){
             if (mListUsers.get(i).getUserName().equals(username)&&mListUsers.get(i).getPassword().equals(password)){
+                User.sOnlineUser=mListUsers.get(i);
                 return true;
             }
         }

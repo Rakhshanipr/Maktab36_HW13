@@ -22,7 +22,6 @@ public class TaskRepository implements IRepository<Task> {
         return sTaskRepository;
     }
 
-
     @Override
     public void add(Task task) {
         sTaskList.add(task);
@@ -43,7 +42,7 @@ public class TaskRepository implements IRepository<Task> {
         task1.setState(e.getState());
         task1.setUser(e.getUser());
         task1.setDate(e.getDate());
-        task1.setTime(e.getTime());
+        task1.setLocalTime(e.getLocalTime());
     }
 
     @Override

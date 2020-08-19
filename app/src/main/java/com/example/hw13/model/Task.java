@@ -1,6 +1,7 @@
 package com.example.hw13.model;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,7 +11,7 @@ public class Task {
     private String mDescribe;
     private State mState;
     private Date mDate;
-    private Time mTime;
+    private LocalTime mLocalTime;
     private User mUser;
 
 
@@ -20,21 +21,21 @@ public class Task {
     }
 
 
-    public Task(String title, String describe, State state, Date date, Time time, User user) {
+    public Task(String title, String describe, State state, Date date, LocalTime time, User user) {
         mTitle = title;
         mDescribe = describe;
         mState = state;
         mDate = date;
-        mTime = time;
+        mLocalTime = time;
         mUser = user;
     }
 
-    public Time getTime() {
-        return mTime;
+    public LocalTime getLocalTime() {
+        return mLocalTime;
     }
 
-    public void setTime(Time time) {
-        mTime = time;
+    public void setLocalTime(LocalTime localTime) {
+        this.mLocalTime = localTime;
     }
 
     public String getDescribe() {

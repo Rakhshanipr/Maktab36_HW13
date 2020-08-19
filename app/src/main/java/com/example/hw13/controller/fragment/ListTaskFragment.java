@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.hw13.R;
 import com.example.hw13.model.State;
@@ -20,6 +21,7 @@ import com.example.hw13.repository.TaskRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -73,10 +75,11 @@ public class ListTaskFragment extends Fragment {
         mFloatingActionButtonAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                mTaskRepository.add(new Task("programing", "excesise 13", State.Done, new Date(), new Time(24), null));
-//                String s = "l";
+//                mTaskRepository.add(new Task("programing", "excesise 13", State.Done, new Date(), null, null));
+
                 AddTaskFragment fragment =new AddTaskFragment();
                 fragment.show(getFragmentManager(), TAG_ADD_TASK_FRAGMENT_DIALOG);
+                mMyAdapter.notifyDataSetChanged();
             }
         });
 
@@ -84,19 +87,19 @@ public class ListTaskFragment extends Fragment {
 
     private void setInitialization() {
         State state = (State) getArguments().getSerializable(ARG_STATE);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
         mMyAdapter = new MyAdapter(mTaskRepository.getList());
         mRecyclerView.setAdapter(mMyAdapter);
-        mRecyclerView.showContextMenu();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         //region defind variable
-        private EditText mEditTextTitle;
-        private EditText mEditTextDescribe;
-        private EditText mEditTextDate;
-        private EditText mEditTextTime;
-        private EditText mEditTextState;
+        private TextView mEditTextTitle;
+        private TextView mEditTextDescribe;
+        private TextView mEditTextDate;
+        private TextView mEditTextTime;
+        private TextView mEditTextState;
 
         //endregion
         public MyViewHolder(@NonNull View itemView) {
@@ -109,17 +112,12 @@ public class ListTaskFragment extends Fragment {
         }
 
         public void setItem(Task task) {
-//            mEditTextTitle.setText(task.getTitle());
-//            mEditTextDescribe.setText(task.getDescribe());
-//            mEditTextTime.setText(task.getTime().toString());
-//            mEditTextState.setText(task.getState().toString());
-//            mEditTextDate.setText(task.getDate().toString());
+            mEditTextTitle.setText(task.getTitle());
+            mEditTextDescribe.setText(task.getDescribe());
+            mEditTextTime.setText("task.getLocalTime().toString()");
+            mEditTextState.setText(task.getState().toString());
+            mEditTextDate.setText(task.getDate().toString());
 
-            mEditTextTitle.setText("task.getTitle()");
-            mEditTextDescribe.setText("task.getDescribe()");
-            mEditTextTime.setText("task.getTime().toString()");
-            mEditTextState.setText("task.getState().toString()");
-            mEditTextDate.setText("task.getDate().toString()");
         }
     }
 
