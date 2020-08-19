@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constaintLayout_item_of_recyclerview_task"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="#686835">
 
     <TextView
         android:id="@+id/textView_recyclerview_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:padding="4dp"
         android:text="Title"
         android:textColor="#000000"
+        android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.111"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,10 +27,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:background="#2B2828"
+        android:inputType="textMultiLine"
+        android:padding="4dp"
         android:text="Describe"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/textView_recyclerview_title"
-        app:layout_constraintHorizontal_bias="1.0"
+        android:textColor="#E4F4F2"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/textView_recyclerview_title"
         app:layout_constraintTop_toBottomOf="@+id/textView_recyclerview_title" />
 
@@ -32,13 +40,15 @@
         android:id="@+id/textView_recyclerview_state"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="#1DE9B6"
+        android:padding="4dp"
         android:text="State"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/textView_recyclerview_describe"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView_recyclerview_describe"
-        app:layout_constraintTop_toBottomOf="@+id/textView_recyclerview_describe" />
+        android:textColor="#283593"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_recyclerview_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView_recyclerview_title" />
 
     <TextView
         android:id="@+id/textView_recyclerview_time"
@@ -46,11 +56,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
+        android:padding="4dp"
         android:text="Time"
-        android:textColor="#000000"
+        android:textColor="#C6FF00"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textView_recyclerview_date"
-        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="@+id/textView_recyclerview_date"
         app:layout_constraintTop_toBottomOf="@+id/textView_recyclerview_date"
         app:layout_constraintVertical_bias="0.083" />
@@ -59,12 +68,12 @@
         android:id="@+id/textView_recyclerview_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:padding="4dp"
         android:text="Date"
-        android:textColor="#000000"
-        app:layout_constraintEnd_toEndOf="@+id/textView_recyclerview_state"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="@+id/textView_recyclerview_state"
-        app:layout_constraintTop_toBottomOf="@+id/textView_recyclerview_state" />
+        android:textColor="#C6FF00"
+        app:layout_constraintStart_toStartOf="@+id/textView_recyclerview_describe"
+        app:layout_constraintTop_toBottomOf="@+id/textView_recyclerview_describe" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

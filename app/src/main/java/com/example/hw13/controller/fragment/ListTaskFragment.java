@@ -1,8 +1,10 @@
 package com.example.hw13.controller.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -75,11 +77,10 @@ public class ListTaskFragment extends Fragment {
         mFloatingActionButtonAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                mTaskRepository.add(new Task("programing", "excesise 13", State.Done, new Date(), null, null));
+//      mTaskRepository.add(new Task("programing", "excesise 13", State.Done, new Date(), null, null));
 
-                AddTaskFragment fragment =new AddTaskFragment();
+                AddTaskFragment fragment =AddTaskFragment.newInstance();
                 fragment.show(getFragmentManager(), TAG_ADD_TASK_FRAGMENT_DIALOG);
-                mMyAdapter.notifyDataSetChanged();
             }
         });
 
@@ -90,6 +91,13 @@ public class ListTaskFragment extends Fragment {
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
         mMyAdapter = new MyAdapter(mTaskRepository.getList());
         mRecyclerView.setAdapter(mMyAdapter);
+        mMyAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        mMyAdapter.notifyDataSetChanged();
+
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -109,20 +117,30 @@ public class ListTaskFragment extends Fragment {
             mEditTextState = itemView.findViewById(R.id.textView_recyclerview_state);
             mEditTextDate = itemView.findViewById(R.id.textView_recyclerview_date);
             mEditTextTime = itemView.findViewById(R.id.textView_recyclerview_time);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    
+                }
+            });
         }
 
         public void setItem(Task task) {
             mEditTextTitle.setText(task.getTitle());
             mEditTextDescribe.setText(task.getDescribe());
-            mEditTextTime.setText("task.getLocalTime().toString()");
+            mEditTextTime.setText(task.getLocalTime().toString());
             mEditTextState.setText(task.getState().toString());
             mEditTextDate.setText(task.getDate().toString());
 
         }
     }
 
+
+
     public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         List<Task> mTaskList;
+
 
         public MyAdapter(List<Task> list) {
             mTaskList = list;
