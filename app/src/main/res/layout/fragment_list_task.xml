@@ -28,5 +28,17 @@
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton_fragmentListTask_deleteAllTask"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_marginVertical="82dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:src="@mipmap/delete_witiout_round">
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 
 </FrameLayout>

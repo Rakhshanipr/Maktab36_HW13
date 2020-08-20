@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import com.example.hw13.R;
 import com.example.hw13.model.State;
 import com.example.hw13.model.Task;
+import com.example.hw13.model.User;
 import com.example.hw13.repository.TaskRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -29,6 +31,7 @@ import java.util.Date;
 import java.util.List;
 
 public class ListTaskFragment extends Fragment {
+    public static final String TAG_EDIT_TASK_DIALOG_FRAGMENT = "com.example.hw13.controller.fragment.editTaskDialogFragment";
     //region defind variable
     RecyclerView mRecyclerView;
     MyAdapter mMyAdapter;
@@ -89,7 +92,9 @@ public class ListTaskFragment extends Fragment {
     private void setInitialization() {
         State state = (State) getArguments().getSerializable(ARG_STATE);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
-        mMyAdapter = new MyAdapter(mTaskRepository.getList());
+        mTaskRepository.add(new Task("maktab","to solve excesise 13",State.Doing,new Date(),LocalTime.of(12,12), User.sOnlineUser));
+        mMyAdapter = new MyAdapter(mTaskRepository.getList(state));
+
         mRecyclerView.setAdapter(mMyAdapter);
         mMyAdapter.notifyDataSetChanged();
     }
@@ -109,6 +114,7 @@ public class ListTaskFragment extends Fragment {
         private TextView mEditTextTime;
         private TextView mEditTextState;
 
+        Task mTask;
         //endregion
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -121,12 +127,14 @@ public class ListTaskFragment extends Fragment {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    
+                    EditTaskFragment editTaskFragment=EditTaskFragment.newInstance(mTask.getId());
+                    editTaskFragment.show(getFragmentManager(), TAG_EDIT_TASK_DIALOG_FRAGMENT);
                 }
             });
         }
 
         public void setItem(Task task) {
+            mTask=task;
             mEditTextTitle.setText(task.getTitle());
             mEditTextDescribe.setText(task.getDescribe());
             mEditTextTime.setText(task.getLocalTime().toString());
@@ -135,9 +143,6 @@ public class ListTaskFragment extends Fragment {
 
         }
     }
-
-
-
     public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         List<Task> mTaskList;
 

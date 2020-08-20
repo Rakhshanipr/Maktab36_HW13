@@ -36,6 +36,7 @@ public class ViewPagerTaskActivity extends AppCompatActivity {
     private void setInitialization() {
         FragmentStateAdapter fragmentStateAdapter=new fragmentStateAdapter(this);
         mViewPager2.setAdapter(fragmentStateAdapter);
+        mViewPager2.setOffscreenPageLimit(1);
     }
 
     private void findViews() {

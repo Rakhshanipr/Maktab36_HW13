@@ -19,6 +19,8 @@ import java.time.LocalTime;
 
 public class TimePickerFragment extends DialogFragment {
 
+    public static final String ARG_LOCAL_DATE = "com.example.hw13.controller.fragment.LocalDate";
+    public static final String ARG_IS_FROM_EDIT_TASK = "isFromEditTask";
     //region defind variable
     Button mButtonSave;
     Button mButtonCancel;
@@ -32,6 +34,16 @@ public class TimePickerFragment extends DialogFragment {
     public static TimePickerFragment newInstance() {
         TimePickerFragment fragment = new TimePickerFragment();
         Bundle args = new Bundle();
+        args.putBoolean(ARG_IS_FROM_EDIT_TASK,false);
+        fragment.setArguments(args);
+
+        return fragment;
+    }
+    public static TimePickerFragment newInstance(LocalTime localTime) {
+        TimePickerFragment fragment = new TimePickerFragment();
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_LOCAL_DATE,localTime);
+        args.putBoolean(ARG_IS_FROM_EDIT_TASK,true);
         fragment.setArguments(args);
         return fragment;
     }
@@ -53,6 +65,12 @@ public class TimePickerFragment extends DialogFragment {
     }
 
     private void setInitialization() {
+        if (getArguments().getBoolean(ARG_IS_FROM_EDIT_TASK)){
+            LocalTime localTime=(LocalTime) getArguments().getSerializable(ARG_LOCAL_DATE);
+            mTimePicker.setHour(localTime.getHour());
+            mTimePicker.setMinute(localTime.getMinute());
+        }
+
         mTimePicker.setIs24HourView(true);
     }
 

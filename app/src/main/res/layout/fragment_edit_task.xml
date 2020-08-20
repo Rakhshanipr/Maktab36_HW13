@@ -9,7 +9,6 @@
     android:background="#A7B336"
     tools:context=".controller.fragment.AddTaskFragment">
 
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
@@ -18,12 +17,12 @@
         android:text="Title :"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_fragmentAddTask_title"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_fragmentEditTask_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editText_fragmentAddTask_title" />
+        app:layout_constraintTop_toTopOf="@+id/editText_fragmentEditTask_title" />
 
     <EditText
-        android:id="@+id/editText_fragmentAddTask_title"
+        android:id="@+id/editText_fragmentEditTask_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -42,9 +41,9 @@
         android:text="Describe:"
         android:textColor="#000000"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/editText_fragmentAddTask_describe"
+        app:layout_constraintBottom_toBottomOf="@+id/editText_fragmentEditTask_describe"
         app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="@+id/editText_fragmentAddTask_describe" />
+        app:layout_constraintTop_toTopOf="@+id/editText_fragmentEditTask_describe" />
 
     <TextView
         android:id="@+id/textView3"
@@ -58,18 +57,18 @@
         app:layout_constraintTop_toTopOf="@+id/radioGroup" />
 
     <EditText
-        android:id="@+id/editText_fragmentAddTask_describe"
+        android:id="@+id/editText_fragmentEditTask_describe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/editText_fragmentAddTask_title"
-        app:layout_constraintStart_toStartOf="@+id/editText_fragmentAddTask_title"
-        app:layout_constraintTop_toBottomOf="@+id/editText_fragmentAddTask_title" />
+        app:layout_constraintEnd_toEndOf="@+id/editText_fragmentEditTask_title"
+        app:layout_constraintStart_toStartOf="@+id/editText_fragmentEditTask_title"
+        app:layout_constraintTop_toBottomOf="@+id/editText_fragmentEditTask_title" />
 
     <Button
-        android:id="@+id/button_fragmentAddTask_setTime"
+        android:id="@+id/button_fragmentEditTask_setTime"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -82,10 +81,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_fragmentAddTask_setDate" />
+        app:layout_constraintTop_toBottomOf="@+id/button_fragmentEditTask_setDate" />
 
     <Button
-        android:id="@+id/button_fragmentAddTask_setDate"
+        android:id="@+id/button_fragmentEditTask_setDate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -101,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
-        android:id="@+id/button_fragmentAddTask_save"
+        android:id="@+id/button_fragmentEditTask_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -110,7 +109,7 @@
         android:textAllCaps="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_fragmentAddTask_setTime" />
+        app:layout_constraintTop_toBottomOf="@+id/button_fragmentEditTask_setTime" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -118,12 +117,12 @@
         android:layout_height="40dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/editText_fragmentAddTask_describe"
-        app:layout_constraintStart_toStartOf="@+id/editText_fragmentAddTask_describe"
-        app:layout_constraintTop_toBottomOf="@+id/editText_fragmentAddTask_describe">
+        app:layout_constraintEnd_toEndOf="@+id/editText_fragmentEditTask_describe"
+        app:layout_constraintStart_toStartOf="@+id/editText_fragmentEditTask_describe"
+        app:layout_constraintTop_toBottomOf="@+id/editText_fragmentEditTask_describe">
 
         <RadioButton
-            android:id="@+id/radioButton_fragmentAddTask_toDo"
+            android:id="@+id/radioButton_fragmentEditTask_toDo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -136,7 +135,7 @@
             android:textSize="14dp" />
 
         <RadioButton
-            android:id="@+id/radioButton_fragmentAddTask_Doing"
+            android:id="@+id/radioButton_fragmentEditTask_Doing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -148,7 +147,7 @@
             android:textSize="14dp" />
 
         <RadioButton
-            android:id="@+id/radioButton_fragmentAddTask_Done"
+            android:id="@+id/radioButton_fragmentEditTask_Done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -159,4 +158,15 @@
             android:text="Done"
             android:textSize="14dp" />
     </RadioGroup>
+
+    <ImageButton
+        android:id="@+id/imageButtton_fragmentEditTask_delete"
+        android:layout_width="68dp"
+        android:layout_height="75dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/delete_foreground"
+        app:layout_constraintBottom_toBottomOf="@+id/button_fragmentEditTask_save"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_fragmentEditTask_save" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

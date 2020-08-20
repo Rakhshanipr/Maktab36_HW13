@@ -17,6 +17,7 @@ import com.example.hw13.R;
 
 import java.sql.ResultSet;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -24,6 +25,7 @@ import javax.xml.transform.Result;
 
 public class DatePickerFragment extends DialogFragment {
     public static final String BUNDLE_RESUALT_OF_DATE_PICKER = "resualtOfDatePicker";
+    public static final String ARG_IS_FROM_EDIT_TASK = "isFromEditTask";
     //region defind variable
     Button mButtonSave;
     Button mButtonCancel;
@@ -31,10 +33,11 @@ public class DatePickerFragment extends DialogFragment {
     //endregion
     public static final String ARG_DATE = "com.example.hw13.controller.fragment.date";
 
-    public static DatePickerFragment newInstance(Time time) {
+    public static DatePickerFragment newInstance(Date date) {
         DatePickerFragment fragment = new DatePickerFragment();
         Bundle args = new Bundle();
-        args.putSerializable(ARG_DATE, time);
+        args.putBoolean(ARG_IS_FROM_EDIT_TASK,true);
+        args.putSerializable(ARG_DATE, date);
         fragment.setArguments(args);
         return fragment;
     }
@@ -42,6 +45,7 @@ public class DatePickerFragment extends DialogFragment {
     public static DatePickerFragment newInstance() {
         DatePickerFragment fragment = new DatePickerFragment();
         Bundle args = new Bundle();
+        args.putBoolean(ARG_IS_FROM_EDIT_TASK,false);
         fragment.setArguments(args);
         return fragment;
     }
@@ -59,6 +63,7 @@ public class DatePickerFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_date_picker, container, false);
         findViews(view);
         setOnClickListners();
+        setInitialization();
         return view;
     }
 
@@ -91,6 +96,13 @@ public class DatePickerFragment extends DialogFragment {
         mButtonCancel = view.findViewById(R.id.button_fragmentDatePicker_cancel);
         mButtonSave = view.findViewById(R.id.button_fragmentDatePicker_save);
         mDatePicker = view.findViewById(R.id.datePicker_fragmentDatePicker_date);
+    }
+
+    private void setInitialization(){
+        if (getArguments().getBoolean(ARG_IS_FROM_EDIT_TASK)){
+            Date date=(Date) getArguments().getSerializable(ARG_DATE);
+            mDatePicker.updateDate(date.getYear(),date.getMonth(),date.getDay());
+        }
     }
 
 

@@ -2,6 +2,7 @@ package com.example.hw13.repository;
 
 import com.example.hw13.model.State;
 import com.example.hw13.model.Task;
+import com.example.hw13.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class TaskRepository implements IRepository<Task> {
     public List<Task> getList(State state) {
         List<Task> list = new ArrayList<>();
         for (int i = 0; i < sTaskList.size(); i++) {
-            if (sTaskList.get(i).getState().equals(state)) {
+            if (sTaskList.get(i).getState().equals(state)&&sTaskList.get(i).getUser()== User.sOnlineUser) {
                 list.add(sTaskList.get(i));
             }
         }

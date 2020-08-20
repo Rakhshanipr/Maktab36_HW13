@@ -26,8 +26,6 @@ import java.util.Date;
 
 
 public class AddTaskFragment extends DialogFragment {
-    public static final int REQUEST_CODE_DATE_PICKER_FRAGMENT = 1;
-    public static final int REQUEST_CODE_TIME_PICKER_FRAGMENT = 0;
     //region defind variable
     Button mButtonSetTime;
     Button mButtonSetDate;
@@ -48,6 +46,10 @@ public class AddTaskFragment extends DialogFragment {
     //region defind static method and variable
     public static final String TAG_DATE_PICKER_DIALOG = "com.example.hw13.controller.fragment.datePickerDialog";
     public static final String TAG_TIME_PICKER_DIALOG = "com.example.hw13.controller.fragment.TimePickerDialog";
+
+
+    public static final int REQUEST_CODE_DATE_PICKER_FRAGMENT = 1;
+    public static final int REQUEST_CODE_TIME_PICKER_FRAGMENT = 0;
     //endregion
 
     public static AddTaskFragment newInstance() {
