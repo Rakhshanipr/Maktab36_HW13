@@ -1,42 +1,38 @@
 package com.example.hw13.controller.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.hw13.R;
 import com.example.hw13.model.State;
 import com.example.hw13.model.Task;
-import com.example.hw13.model.User;
 import com.example.hw13.repository.TaskRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.sql.Time;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ListTaskFragment extends Fragment {
     public static final String TAG_EDIT_TASK_DIALOG_FRAGMENT = "com.example.hw13.controller.fragment.editTaskDialogFragment";
+    public static final int REQUEST_CODE_ADD_TASK_FRAGMENT_DIALOG = 3;
     //region defind variable
     RecyclerView mRecyclerView;
     MyAdapter mMyAdapter;
     TaskRepository mTaskRepository;
     FloatingActionButton mFloatingActionButtonAddTask;
+    FloatingActionButton mFloatingActionButtonDeletAll;
+    State mState;
     //endregion
 
     //region defind static method and variable
@@ -74,6 +70,7 @@ public class ListTaskFragment extends Fragment {
     private void findViews(View view) {
         mFloatingActionButtonAddTask = view.findViewById(R.id.floatingActionButton_fragmentListTask_addTask);
         mRecyclerView = view.findViewById(R.id.recyclerview_fragmentListTask);
+        mFloatingActionButtonDeletAll=view.findViewById(R.id.floatingActionButton_fragmentListTask_deleteAllTask);
     }
 
     private void setOnClickListners() {
@@ -83,25 +80,47 @@ public class ListTaskFragment extends Fragment {
 //      mTaskRepository.add(new Task("programing", "excesise 13", State.Done, new Date(), null, null));
 
                 AddTaskFragment fragment =AddTaskFragment.newInstance();
+                fragment.setTargetFragment(ListTaskFragment.this, REQUEST_CODE_ADD_TASK_FRAGMENT_DIALOG);
                 fragment.show(getFragmentManager(), TAG_ADD_TASK_FRAGMENT_DIALOG);
+            }
+        });
+
+        mFloatingActionButtonDeletAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTaskRepository.deletWithState(mState);
+                notifyDataSetChanged();
             }
         });
 
     }
 
     private void setInitialization() {
-        State state = (State) getArguments().getSerializable(ARG_STATE);
+         mState = (State) getArguments().getSerializable(ARG_STATE);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
-        mTaskRepository.add(new Task("maktab","to solve excesise 13",State.Doing,new Date(),LocalTime.of(12,12), User.sOnlineUser));
-        mMyAdapter = new MyAdapter(mTaskRepository.getList(state));
+
+        mMyAdapter = new MyAdapter(mTaskRepository.getList(mState));
 
         mRecyclerView.setAdapter(mMyAdapter);
         mMyAdapter.notifyDataSetChanged();
     }
+    private void notifyDataSetChanged(){
+        if (mMyAdapter!=null) {
+            mMyAdapter = new MyAdapter(mTaskRepository.getList(mState));
+            mRecyclerView.setAdapter(mMyAdapter);
+            mMyAdapter.notifyDataSetChanged();
+        }
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        mMyAdapter.notifyDataSetChanged();
+        if (resultCode!= Activity.RESULT_OK||data==null){
+            return;
+        }
+        if (requestCode==REQUEST_CODE_ADD_TASK_FRAGMENT_DIALOG){
+            notifyDataSetChanged();
+        }
 
     }
 

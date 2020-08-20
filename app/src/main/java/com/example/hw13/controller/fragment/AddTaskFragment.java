@@ -131,7 +131,10 @@ public class AddTaskFragment extends DialogFragment {
                 task.setState(getState());
                 task.setUser(User.sOnlineUser);
                 mTaskRepository.add(task);
+                ListTaskFragment listTaskFragment=(ListTaskFragment) getTargetFragment();
+                listTaskFragment.onActivityResult(ListTaskFragment.REQUEST_CODE_ADD_TASK_FRAGMENT_DIALOG,Activity.RESULT_OK,new Intent());
                 getDialog().dismiss();
+
             }
         });
 

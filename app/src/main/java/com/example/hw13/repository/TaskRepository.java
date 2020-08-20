@@ -79,10 +79,25 @@ public class TaskRepository implements IRepository<Task> {
     public List<Task> getList(State state) {
         List<Task> list = new ArrayList<>();
         for (int i = 0; i < sTaskList.size(); i++) {
-            if (sTaskList.get(i).getState().equals(state)&&sTaskList.get(i).getUser()== User.sOnlineUser) {
+            if (sTaskList.get(i).getState().equals(state) && sTaskList.get(i).getUser() == User.sOnlineUser) {
                 list.add(sTaskList.get(i));
             }
         }
         return list;
+    }
+
+    public void deletWithState(State state) {
+        boolean reapit=true;
+        while (reapit) {
+            reapit=false;
+            for (int i = 0; i < sTaskList.size(); i++) {
+                if (sTaskList.get(i).getState().equals(state) && sTaskList.get(i).getUser() == User.sOnlineUser) {
+                    sTaskList.remove(i);
+                    reapit=true;
+                    break;
+                }
+            }
+        }
+
     }
 }
