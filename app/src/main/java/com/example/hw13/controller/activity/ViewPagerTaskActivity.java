@@ -22,7 +22,7 @@ import java.nio.channels.InterruptedByTimeoutException;
 public class ViewPagerTaskActivity extends AppCompatActivity {
     //region defind variable
     ViewPager2 mViewPager2;
-    TabLayout mTabLayout;
+//    TabLayout mTabLayout;
 
     ListTaskFragment binding;
 
@@ -48,19 +48,18 @@ public class ViewPagerTaskActivity extends AppCompatActivity {
         FragmentStateAdapter fragmentStateAdapter=new fragmentStateAdapter(this);
         mViewPager2.setAdapter(fragmentStateAdapter);
 
-        new TabLayoutMediator(mTabLayout, mViewPager2,
-                new TabLayoutMediator.TabConfigurationStrategy() {
-                    @Override public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                        tab.setText("Tab " + (position + 1));
-                    }
-                }).attach();
+//        new TabLayoutMediator(mTabLayout, mViewPager2,
+//                new TabLayoutMediator.TabConfigurationStrategy() {
+//                    @Override public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+//                        tab.setText("Tab " + (position + 1));
+//                    }
+//                }).attach();
 
-        mViewPager2.setOffscreenPageLimit(1);
     }
 
     private void findViews() {
         mViewPager2 = findViewById(R.id.activityViewPagerTask_tasksFragment);
-        mTabLayout=findViewById(R.id.tabLayout_activityViewPagerTask);
+//        mTabLayout=findViewById(R.id.tabLayout_activityViewPagerTask);
     }
 
     public class fragmentStateAdapter extends FragmentStateAdapter {
