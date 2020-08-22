@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hw13.R;
@@ -20,6 +21,7 @@ import com.example.hw13.model.State;
 import com.example.hw13.model.Task;
 import com.example.hw13.repository.TaskRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
@@ -27,11 +29,17 @@ public class ListTaskFragment extends Fragment {
     public static final String TAG_EDIT_TASK_DIALOG_FRAGMENT = "com.example.hw13.controller.fragment.editTaskDialogFragment";
     public static final int REQUEST_CODE_ADD_TASK_FRAGMENT_DIALOG = 3;
     //region defind variable
+
+    FloatingActionButton mFloatingActionButtonAddTask;
+    FloatingActionButton mFloatingActionButtonDeletAll;
+    ImageView mImageViewEmpty;
+
     RecyclerView mRecyclerView;
     MyAdapter mMyAdapter;
     TaskRepository mTaskRepository;
-    FloatingActionButton mFloatingActionButtonAddTask;
-    FloatingActionButton mFloatingActionButtonDeletAll;
+
+
+
     State mState;
     //endregion
 
@@ -67,9 +75,17 @@ public class ListTaskFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+    }
+
     private void findViews(View view) {
         mFloatingActionButtonAddTask = view.findViewById(R.id.floatingActionButton_fragmentListTask_addTask);
         mRecyclerView = view.findViewById(R.id.recyclerview_fragmentListTask);
+
+        mImageViewEmpty=view.findViewById(R.id.imageView_fragmentListTask_empty);
         mFloatingActionButtonDeletAll=view.findViewById(R.id.floatingActionButton_fragmentListTask_deleteAllTask);
     }
 
@@ -96,16 +112,24 @@ public class ListTaskFragment extends Fragment {
     }
 
     private void setInitialization() {
-         mState = (State) getArguments().getSerializable(ARG_STATE);
+        mState = (State) getArguments().getSerializable(ARG_STATE);
         mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),1));
-
+        if (mTaskRepository.getList(mState).size()==0){
+            mImageViewEmpty.setVisibility(View.VISIBLE);
+        }else{
+            mImageViewEmpty.setVisibility(View.INVISIBLE);
+        }
         mMyAdapter = new MyAdapter(mTaskRepository.getList(mState));
-
         mRecyclerView.setAdapter(mMyAdapter);
         mMyAdapter.notifyDataSetChanged();
     }
-    private void notifyDataSetChanged(){
+    public void notifyDataSetChanged(){
         if (mMyAdapter!=null) {
+            if (mTaskRepository.getList(mState).size()==0){
+                mImageViewEmpty.setVisibility(View.VISIBLE);
+            }else{
+                mImageViewEmpty.setVisibility(View.INVISIBLE);
+            }
             mMyAdapter = new MyAdapter(mTaskRepository.getList(mState));
             mRecyclerView.setAdapter(mMyAdapter);
             mMyAdapter.notifyDataSetChanged();

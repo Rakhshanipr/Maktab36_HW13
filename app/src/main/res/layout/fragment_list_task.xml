@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.ancudroid.com/tools"
+    xmlns:tools2="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,10 +12,10 @@
         android:id="@+id/recyclerview_fragmentListTask"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical"
         android:visibility="visible"
-        app:spanCount="1">
+        app:spanCount="1"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -25,7 +26,6 @@
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
         android:src="@mipmap/add_foreground">
-
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -37,8 +37,12 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:src="@mipmap/delete_all">
-
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
-
+    <ImageView
+        android:id="@+id/imageView_fragmentListTask_empty"
+        android:layout_width="match_parent"
+        android:layout_height="551dp"
+        app:srcCompat="@mipmap/empty_foreground"
+        tools2:visibility="invisible" />
 </FrameLayout>

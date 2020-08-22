@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -133,6 +135,8 @@ public class AddTaskFragment extends DialogFragment {
                 mTaskRepository.add(task);
                 ListTaskFragment listTaskFragment=(ListTaskFragment) getTargetFragment();
                 listTaskFragment.onActivityResult(ListTaskFragment.REQUEST_CODE_ADD_TASK_FRAGMENT_DIALOG,Activity.RESULT_OK,new Intent());
+//                FragmentManager fragmentManager=getFragmentManager();
+//                Fragment fragmentName = getFragmentManager().findFragmentByTag("TagName");
                 getDialog().dismiss();
 
             }
