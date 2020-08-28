@@ -20,6 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.nio.channels.InterruptedByTimeoutException;
 
 public class ViewPagerTaskActivity extends AppCompatActivity {
+
     //region defind variable
     ViewPager2 mViewPager2;
 //    TabLayout mTabLayout;
@@ -27,6 +28,7 @@ public class ViewPagerTaskActivity extends AppCompatActivity {
     ListTaskFragment binding;
 
     //endregion
+
     public static Intent newIntent(Context src){
         Intent intent=new Intent(src,ViewPagerTaskActivity.class);
         return intent;
@@ -38,11 +40,7 @@ public class ViewPagerTaskActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_pager_task);
         findViews();
         setInitialization();
-
-
     }
-
-
 
     private void setInitialization() {
         FragmentStateAdapter fragmentStateAdapter=new fragmentStateAdapter(this);
