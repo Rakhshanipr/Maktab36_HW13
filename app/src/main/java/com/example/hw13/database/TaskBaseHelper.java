@@ -27,16 +27,12 @@ public class TaskBaseHelper extends SQLiteOpenHelper {
                     COLS.DESCRIBE + " text"+
                     ");");;
 
-
         sqLiteDatabase.execSQL("CREATE TABLE " + DBTaskSchema.UserTable.NAME + "(" +
                 DBTaskSchema.UserTable.COLS.ID + " integer primary key autoincrement," +
                 DBTaskSchema.UserTable.COLS.UUID + " text," +
                 DBTaskSchema.UserTable.COLS.PASSWORD + " text," +
                 DBTaskSchema.UserTable.COLS.USERNAME + " text" +
-
                 ");");;
-
-
     }
 
     @Override

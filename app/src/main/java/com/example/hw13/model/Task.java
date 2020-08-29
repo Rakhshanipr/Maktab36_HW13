@@ -15,12 +15,23 @@ public class Task {
     private User mUser;
 
 
-    public Task() {
+    public Task(UUID uuid) {
+    }
 
+    public Task(String title, String describe, State state, Date date, LocalTime time, User user) {
+        mId=UUID.randomUUID();
+        mTitle = title;
+        mDescribe = describe;
+        mState = state;
+        mDate = date;
+        mLocalTime = time;
+        mUser = user;
     }
 
 
-    public Task(String title, String describe, State state, Date date, LocalTime time, User user) {
+
+    public Task(UUID uuid,String title, String describe, State state, Date date, LocalTime time, User user) {
+        mId=uuid;
         mTitle = title;
         mDescribe = describe;
         mState = state;

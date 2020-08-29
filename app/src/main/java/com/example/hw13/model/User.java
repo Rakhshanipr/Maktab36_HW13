@@ -15,6 +15,14 @@ public class User {
         mPassword = password;
     }
 
+    public User(UUID uuid,String userName, String password) {
+        mUserId=uuid;
+        mUserName = userName;
+        mPassword = password;
+    }
+
+
+
     public UUID getUserId() {
         return mUserId;
     }

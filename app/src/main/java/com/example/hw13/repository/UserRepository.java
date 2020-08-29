@@ -69,6 +69,16 @@ public class UserRepository implements IRepository<User> {
     }
 
 
+
+    public User getUserByUUID(UUID uuid){
+        for (int i=0;i<mListUsers.size();i++){
+            if (mListUsers.get(i).getUserId().equals(uuid)){
+                return mListUsers.get(i);
+            }
+        }
+        return null;
+    }
+
     public boolean isValid(String username,String password){
         for (int i=0;i<mListUsers.size();i++){
             if (mListUsers.get(i).getUserName().equals(username)&&mListUsers.get(i).getPassword().equals(password)){
