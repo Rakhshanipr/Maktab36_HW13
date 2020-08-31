@@ -44,7 +44,6 @@ public class AddTaskFragment extends DialogFragment {
 
     TaskRepository mTaskRepository;
     //endregion
-
     //region defind static method and variable
     public static final String TAG_DATE_PICKER_DIALOG = "com.example.hw13.controller.fragment.datePickerDialog";
     public static final String TAG_TIME_PICKER_DIALOG = "com.example.hw13.controller.fragment.TimePickerDialog";

@@ -15,7 +15,8 @@ public class Task {
     private User mUser;
 
 
-    public Task(UUID uuid) {
+    public Task() {
+
     }
 
     public Task(String title, String describe, State state, Date date, LocalTime time, User user) {

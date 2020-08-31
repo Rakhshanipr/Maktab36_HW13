@@ -21,18 +21,20 @@ public class TaskCursorWrapper extends CursorWrapper {
     }
     public Task getTask() {
 
-        UserRepository userRepository=UserRepository.getInstance();
+//        UserRepository userRepository=UserRepository.getInstance();
+//
+//        UUID uuid = UUID.fromString(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.UUID)));
+//        String title = getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.TITLE));
+//        String describe = getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.DESCRIBE));
+//        State state = State.valueOf(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.STATE)));
+//        Date date = new Date(getLong(getColumnIndex(DBTaskSchema.TaskTable.COLS.DATE)));
+//        String localTimeString=getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.TIME));
+//        LocalTime time =LocalTime.parse(localTimeString);
+//        User user = userRepository.get(UUID.fromString(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.DESCRIBE))));
+//
+//        Task task=new Task(uuid,title,describe,state,date,time,user);
+//        return task;
 
-        UUID uuid = UUID.fromString(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.UUID)));
-        String title = getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.TITLE));
-        String describe = getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.DESCRIBE));
-        State state = State.valueOf(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.STATE)));
-        Date date = new Date(getLong(getColumnIndex(DBTaskSchema.TaskTable.COLS.DATE)));
-        String localTimeString=getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.TIME));
-        LocalTime time =LocalTime.parse(localTimeString);
-        User user = userRepository.getUserByUUID(UUID.fromString(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.DESCRIBE))));
-
-        Task task=new Task(uuid,title,describe,state,date,time,user);
-        return task;
+        return null;
     }
 }

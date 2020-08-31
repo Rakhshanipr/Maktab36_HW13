@@ -47,7 +47,7 @@ public class LoginFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mUserRepository = UserRepository.getInstance();
+        mUserRepository = UserRepository.getInstance(getContext());
     }
 
     @Override
@@ -75,9 +75,9 @@ public class LoginFragment extends Fragment {
                 String userName = mEditTextUserName.getText().toString();
                 String password = mEditTextPassword.getText().toString();
                 if (mUserRepository.isValid(userName, password)) {
-//                    Toast.makeText(getActivity(), "valid", Toast.LENGTH_SHORT).show();
-                    Intent intent= ViewPagerTaskActivity.newIntent(getContext());
-                    startActivity(intent);
+                    Toast.makeText(getActivity(), "valid", Toast.LENGTH_SHORT).show();
+//                    Intent intent= ViewPagerTaskActivity.newIntent(getContext());
+//                    startActivity(intent);
                 }else{
                     Toast.makeText(getActivity(), "userName or password not found!", Toast.LENGTH_SHORT).show();
                 }

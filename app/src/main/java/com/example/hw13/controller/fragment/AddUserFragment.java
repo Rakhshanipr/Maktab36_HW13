@@ -37,7 +37,7 @@ public class AddUserFragment extends DialogFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mUserRepository = UserRepository.getInstance();
+        mUserRepository = UserRepository.getInstance(getContext());
     }
 
     @Override
