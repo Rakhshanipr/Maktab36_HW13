@@ -1,5 +1,6 @@
 package com.example.hw13.database.cursorwrapper;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
@@ -19,22 +20,20 @@ public class TaskCursorWrapper extends CursorWrapper {
     public TaskCursorWrapper(Cursor cursor) {
         super(cursor);
     }
-    public Task getTask() {
+    public Task getTask(Context context) {
 
-//        UserRepository userRepository=UserRepository.getInstance();
-//
-//        UUID uuid = UUID.fromString(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.UUID)));
-//        String title = getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.TITLE));
-//        String describe = getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.DESCRIBE));
-//        State state = State.valueOf(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.STATE)));
-//        Date date = new Date(getLong(getColumnIndex(DBTaskSchema.TaskTable.COLS.DATE)));
-//        String localTimeString=getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.TIME));
-//        LocalTime time =LocalTime.parse(localTimeString);
-//        User user = userRepository.get(UUID.fromString(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.DESCRIBE))));
-//
-//        Task task=new Task(uuid,title,describe,state,date,time,user);
-//        return task;
+        UserRepository userRepository=UserRepository.getInstance(context);
 
-        return null;
+        UUID uuid = UUID.fromString(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.UUID)));
+        String title = getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.TITLE));
+        String describe = getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.DESCRIBE));
+        State state = State.valueOf(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.STATE)));
+        Date date = new Date(getLong(getColumnIndex(DBTaskSchema.TaskTable.COLS.DATE)));
+        String localTimeString=getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.TIME));
+        LocalTime time =LocalTime.parse(localTimeString);
+        User user = userRepository.get(UUID.fromString(getString(getColumnIndex(DBTaskSchema.TaskTable.COLS.USER))));
+
+        Task task=new Task(uuid,title,describe,state,date,time,user);
+        return task;
     }
 }
